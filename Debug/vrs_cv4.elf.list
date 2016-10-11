@@ -31,13 +31,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
  13 .debug_line   00001539  00000000  00000000  00014830  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_str    0000124e  00000000  00000000  00015d69  2**0
+ 14 .debug_str    0000124d  00000000  00000000  00015d69  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .comment      0000007e  00000000  00000000  00016fb7  2**0
+ 15 .comment      0000007e  00000000  00000000  00016fb6  2**0
                   CONTENTS, READONLY
- 16 .debug_frame  000010d8  00000000  00000000  00017038  2**2
+ 16 .debug_frame  000010d8  00000000  00000000  00017034  2**2
                   CONTENTS, READONLY, DEBUGGING
- 17 .stabstr      0000003f  00000000  00000000  00018110  2**0
+ 17 .stabstr      0000003f  00000000  00000000  0001810c  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -1593,13 +1593,14 @@ void initLED(void){
 
 0800090c <setFrek>:
 
-void setFrek(uint16_t AD_value){
+//Set the LED frek based on the ADvalue
+void setFrek(uint16_t ADvalue){
  800090c:	b580      	push	{r7, lr}
  800090e:	b082      	sub	sp, #8
  8000910:	af00      	add	r7, sp, #0
  8000912:	4603      	mov	r3, r0
  8000914:	80fb      	strh	r3, [r7, #6]
-	if(AD_value<2200){
+	if(ADvalue<2200){
  8000916:	88fb      	ldrh	r3, [r7, #6]
  8000918:	f640 0297 	movw	r2, #2199	; 0x897
  800091c:	4293      	cmp	r3, r2
@@ -1630,7 +1631,7 @@ void setFrek(uint16_t AD_value){
 		GPIO_ResetBits(GPIOA, GPIO_Pin_5);
 			delay(50000);
 	}
-	else if(AD_value<3200){
+	else if(ADvalue<3200){
  8000942:	88fb      	ldrh	r3, [r7, #6]
  8000944:	f5b3 6f48 	cmp.w	r3, #3200	; 0xc80
  8000948:	d20e      	bcs.n	8000968 <setFrek+0x5c>
@@ -1660,7 +1661,7 @@ void setFrek(uint16_t AD_value){
 		GPIO_ResetBits(GPIOA, GPIO_Pin_5);
 			delay(150000);
 	}
-	else if(AD_value<3600){
+	else if(ADvalue<3600){
  8000968:	88fb      	ldrh	r3, [r7, #6]
  800096a:	f5b3 6f61 	cmp.w	r3, #3600	; 0xe10
  800096e:	d20e      	bcs.n	800098e <setFrek+0x82>
@@ -1690,7 +1691,7 @@ void setFrek(uint16_t AD_value){
 		GPIO_ResetBits(GPIOA, GPIO_Pin_5);
 			delay(300000);
 	}
-	else if(AD_value<3800){
+	else if(ADvalue<3800){
  800098e:	88fb      	ldrh	r3, [r7, #6]
  8000990:	f640 62d7 	movw	r2, #3799	; 0xed7
  8000994:	4293      	cmp	r3, r2
@@ -1779,7 +1780,7 @@ void delay(int pocet){
  8000a06:	f7ff ff15 	bl	8000834 <adcInit>
    initLED();
  8000a0a:	f7ff ff65 	bl	80008d8 <initLED>
-   uint16_t AD_value=(uint16_t)0;
+   uint16_t ADvalue=(uint16_t)0;
  8000a0e:	2300      	movs	r3, #0
  8000a10:	80fb      	strh	r3, [r7, #6]
 
@@ -1795,12 +1796,12 @@ void delay(int pocet){
  8000a22:	4603      	mov	r3, r0
  8000a24:	2b00      	cmp	r3, #0
  8000a26:	d0f8      	beq.n	8000a1a <main+0x1a>
- 	  AD_value=ADC_GetConversionValue(ADC1);
+ 	  ADvalue = ADC_GetConversionValue(ADC1);
  8000a28:	4804      	ldr	r0, [pc, #16]	; (8000a3c <main+0x3c>)
  8000a2a:	f7ff fdad 	bl	8000588 <ADC_GetConversionValue>
  8000a2e:	4603      	mov	r3, r0
  8000a30:	80fb      	strh	r3, [r7, #6]
- 	  setFrek(AD_value);
+ 	  setFrek(ADvalue);
  8000a32:	88fb      	ldrh	r3, [r7, #6]
  8000a34:	4618      	mov	r0, r3
  8000a36:	f7ff ff69 	bl	800090c <setFrek>

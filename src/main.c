@@ -88,27 +88,27 @@ void initLED(void){
 	GPIO_Init(GPIOA,&gpioInitStruc);
 }
 
-//Set the LED frek based on the AD_value
-void setFrek(uint16_t AD_value){
-	if(AD_value<2200){
+//Set the LED frek based on the ADvalue
+void setFrek(uint16_t ADvalue){
+	if(ADvalue<2200){
 		GPIO_SetBits(GPIOA, GPIO_Pin_5);
 			delay(50000);
 		GPIO_ResetBits(GPIOA, GPIO_Pin_5);
 			delay(50000);
 	}
-	else if(AD_value<3200){
+	else if(ADvalue<3200){
 		GPIO_SetBits(GPIOA, GPIO_Pin_5);
 			delay(150000);
 		GPIO_ResetBits(GPIOA, GPIO_Pin_5);
 			delay(150000);
 	}
-	else if(AD_value<3600){
+	else if(ADvalue<3600){
 		GPIO_SetBits(GPIOA, GPIO_Pin_5);
 			delay(300000);
 		GPIO_ResetBits(GPIOA, GPIO_Pin_5);
 			delay(300000);
 	}
-	else if(AD_value<3800){
+	else if(ADvalue<3800){
 		GPIO_SetBits(GPIOA, GPIO_Pin_5);
 			delay(500000);
 		GPIO_ResetBits(GPIOA, GPIO_Pin_5);
@@ -136,13 +136,13 @@ void delay(int pocet){
 
    adcInit();
    initLED();
-   uint16_t AD_value=(uint16_t)0;
+   uint16_t ADvalue=(uint16_t)0;
 
    while(1){
  	  ADC_SoftwareStartConv(ADC1);
  	  while(!ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC)){}
- 	  AD_value=ADC_GetConversionValue(ADC1);
- 	  setFrek(AD_value);
+ 	  ADvalue = ADC_GetConversionValue(ADC1);
+ 	  setFrek(ADvalue);
    }
    return 0;
  }

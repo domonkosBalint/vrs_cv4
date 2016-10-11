@@ -1914,18 +1914,18 @@ OUTPUT(vrs_cv4.elf elf32-littlearm)
  .debug_line    0x00001138      0x1e7 src\stm32l1xx_it.o
  .debug_line    0x0000131f      0x21a src\system_stm32l1xx.o
 
-.debug_str      0x00000000     0x124e
+.debug_str      0x00000000     0x124d
  .debug_str     0x00000000      0x79a Libraries\STM32L1xx_StdPeriph_Driver\src\stm32l1xx_adc.o
                                 0x818 (size before relaxing)
  .debug_str     0x0000079a      0x343 Libraries\STM32L1xx_StdPeriph_Driver\src\stm32l1xx_gpio.o
                                 0x4ee (size before relaxing)
  .debug_str     0x00000add      0x51e Libraries\STM32L1xx_StdPeriph_Driver\src\stm32l1xx_rcc.o
                                 0x732 (size before relaxing)
- .debug_str     0x00000ffb       0xab src\main.o
-                                0x51e (size before relaxing)
- .debug_str     0x000010a6       0xa6 src\stm32l1xx_it.o
+ .debug_str     0x00000ffb       0xaa src\main.o
+                                0x51d (size before relaxing)
+ .debug_str     0x000010a5       0xa6 src\stm32l1xx_it.o
                                 0x1fe (size before relaxing)
- .debug_str     0x0000114c      0x102 src\system_stm32l1xx.o
+ .debug_str     0x0000114b      0x102 src\system_stm32l1xx.o
                                 0x35d (size before relaxing)
 
 .comment        0x00000000       0x7e
