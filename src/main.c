@@ -88,6 +88,7 @@ void initLED(void){
 	GPIO_Init(GPIOA,&gpioInitStruc);
 }
 
+//Set the LED frek based on the AD_value
 void setFrek(uint16_t AD_value){
 	if(AD_value<2200){
 		GPIO_SetBits(GPIOA, GPIO_Pin_5);
