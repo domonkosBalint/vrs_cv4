@@ -1463,8 +1463,8 @@ void adcInit(void)
  800083c:	2001      	movs	r0, #1
  800083e:	f7ff ff8b 	bl	8000758 <RCC_AHBPeriphClockCmd>
  /* Configure ADCx Channel 2 as analog input */
- GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 ;
- 8000842:	2301      	movs	r3, #1
+ GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1 ;
+ 8000842:	2302      	movs	r3, #2
  8000844:	61bb      	str	r3, [r7, #24]
  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AN;
  8000846:	2303      	movs	r3, #3
